@@ -1,0 +1,47 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MToken
+    network: mainnet
+    source:
+      address: "0x866A2BF4E572CbcF37D5071A7a58503Bfb36be1b"
+      abi: MToken
+      startBlock: 19818438
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - AuthorizationCanceled
+        - AuthorizationUsed
+        - EIP712DomainChanged
+        - IndexUpdated
+        - StartedEarning
+        - StoppedEarning
+        - Transfer
+      abis:
+        - name: MToken
+          file: ./abis/MToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: AuthorizationCanceled(indexed address,indexed bytes32)
+          handler: handleAuthorizationCanceled
+        - event: AuthorizationUsed(indexed address,indexed bytes32)
+          handler: handleAuthorizationUsed
+        - event: EIP712DomainChanged()
+          handler: handleEIP712DomainChanged
+        - event: IndexUpdated(indexed uint128,indexed uint32)
+          handler: handleIndexUpdated
+        - event: StartedEarning(indexed address)
+          handler: handleStartedEarning
+        - event: StoppedEarning(indexed address)
+          handler: handleStoppedEarning
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/m-token.ts

@@ -1,0 +1,8 @@
+{
+  "mainnet": {
+    "MToken": {
+      "address": "0x866A2BF4E572CbcF37D5071A7a58503Bfb36be1b",
+      "startBlock": 19818438
+    }
+  }
+}
