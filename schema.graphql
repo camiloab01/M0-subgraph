@@ -68,3 +68,20 @@ type Transfer @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type Holder @entity {
+  id: Bytes! # address
+  balance: BigInt! # uint256
+}
+
+type TokenStats @entity {
+  id: ID! # Use a fixed ID like "1" for simplicity
+  totalVolume: BigInt! # Total amount of tokens transferred
+}
+
+type DailyTokenStats @entity {
+  id: ID! # Use a combination of token ID and date
+  date: String! # YYYY-MM-DD format
+  dailyVolume: BigInt! # Total volume for the day
+  tokenSupply: BigInt! # Total token supply for the day
+}
